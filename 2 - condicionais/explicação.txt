@@ -1,0 +1,69 @@
+// boolean -> variavel que representa valores VERDADEIRO ou FALSO
+
+// condicional -> verificar SE um valor corresponde ou não a uma condição. ex: 10 é maior que 5? usa >, <, =, >=, <=
+
+// exemplo Boolean
+const camisetaNeiAzul = true;
+const camisetaEltonAzul = false;
+
+// % representa o resto da divisão
+
+// = atribuição
+   == igualdade de valor, ignora o tipo da variavel (compara o numero com o texto)
+   === igualdade de valor e variavel ao mesmo tempo
+
+   const numeroPar = (numero % 2) == "0"; retorna valor TRUE
+   const numeroPar = (numero % 2) === "0"; retorna valor FALSE
+
+// if -> operador SE
+    if (a condição dentro do parenteses for verdadeira) {
+        executa esse código
+    }  --> se o valor dentro do parenteses for falso, não vai acontecer nd
+
+
+    if (!numeroPar) {
+        console.log('Impar')
+    }  --> usa ! para condicionar que se o valor numeroPar não for verdadeiro, devera executar o console.log('Impar')
+
+// ! dentro da condição serve para indicar a negação do valor ou da condição
+
+//  if (numeroPar) {
+        console.log('Par')
+    }
+
+    if (!numeroPar) {
+        console.log('Impar')
+    }
+
+    --> nesse caso, se o valor numeroPar for verdadeiro, executa o codigo par. Mas se o valor numeroPar não for verdadeiro, executa o código impar.
+
+    --> nesse caso, foi usado ! pra não precisar adicionar a operação de que a conta deve retornar %1 para indicar impar
+
+// if else (se senão) simplica a estrutura
+
+    if (numeroPar) {
+        console.log('Par')
+    }
+
+    else {
+        console.log('Impar')
+    }
+
+    --> nesse caso, no if, se o numeroPar for verdadeiro, executa o codigo par, SENÂO, executa o codigo impar  (se tal coisa vor verdadeiro, faz "X", senão, faz "Y")
+
+//  const numero = 12;
+    const numeroDivisivelPor5 = (numero % 5) === 0; 
+
+    if (numero === 0){
+        console.log('O número é inválido')
+    } else if (numeroDivisivelPor5) {
+        console.log('Sim')
+    } else {
+        console.log('Não')
+    }
+
+    --> temos mais de duas condições, pois queremos que quando o valor for zero, ele imprima uma msg especifica
+
+    --> nesse caso ele vai ir no primeiro if, se o valor for verdadeiro, ele imprime a msg 'O número é inválido', mas se o valor for falso, ele passa para a estrutura else if, e vai analisar se o valor é divisivel por 5, para isso temos duas possibilidades: se o valor for true para divisivel por 5, ele imprime Sim, se o valor for false para divisivel por 5, ele imprime Não, ou seja, ele testa uma condiçaõ, se ela for falsa, ele passa pra outro estagio que vai testar outra condição na sequencia.
+
+    --> dentro do else, eu vou abrir outro espaço para adicionar outras condições. (posso fazer quantos else if for necessario)
