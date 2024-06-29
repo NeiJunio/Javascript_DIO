@@ -2,26 +2,35 @@ const offset = 0
 const limit = 10
 const url = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`
 
-fetch(url)
-    .then(function (response) {
 
-        response
-            .json()
-            .then(function (responseBody){
-                console.log(responseBody)
-            })
+function convertPokemonToLi(pokemon) {
+    return `
+        <li class="pokemon">
+                <span class="number">#001</span>
+                <span class="name">${pokemon.name}</span>
+                
+                <div class="detail">
+                    <ol class="types">
+                        <li class="type">grass</li>
+                        <li class="type">poison</li>
+                    </ol>
 
-    })
+                    <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png"
+                        alt="${pokemon.name}">
+                </div>
+            </li>
+    `;
+}
 
-    .catch(function (error) {
-        console.error(error)
-    })
+const pokemonList = document.getElementById('pokemonList');
 
-    .finally(function () {
-        console.log('Requisição concluída!')
-    })
+pokeApi.getPokemons().then((pokemons) => {
+    const listItems = []
 
-    // try {
-    // } catch (error) { 
-    // } finally {
-    // }
+    for (let i = 0; i < pokemons.length; i++) {
+        const pokemon = pokemons[i];
+        listItems.push(convertPokemonToLi(pokemon))
+    }
+    console.log(listItems)
+})
+
