@@ -1,6 +1,16 @@
-function convertPokemonToLi(pokemon) {
-    return `
-        <li class="pokemon ${pokemon.type}">
+const pokemonList = document.getElementById('pokemonList');
+const loadMoreButton = document.getElementById('loadMoreButton');
+
+const maxRecords = 151 //Limitar somente na 1ª geração dos pokemons
+const limit = 10
+let offset = 0;
+
+
+
+function loadPokemonItens(offset, limit) {
+    pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
+        const newHtml = pokemons.map((pokemon) =>
+            `<li class="pokemon ${pokemon.type}">
                 <span class="number">#${pokemon.number} </span>
                 <span class="name">${pokemon.name}</span>
                 
@@ -13,11 +23,27 @@ function convertPokemonToLi(pokemon) {
                         alt="${pokemon.name}">
                 </div>
             </li>
-    `;
+        `).join('')
+
+        pokemonList.innerHTML += newHtml
+    })
 }
 
-const pokemonList = document.getElementById('pokemonList');
+loadPokemonItens(offset, limit)
 
-pokeApi.getPokemons().then((pokemons = []) => {
-    pokemonList.innerHTML = pokemons.map(convertPokemonToLi).join('')
+loadMoreButton.addEventListener('click', () => {
+    offset += limit
+
+    const qtRecordNexPage = offset + limit
+
+    if (qtRecordNexPage >= maxRecords) {
+        const newLimit = maxRecords - offset
+        loadPokemonItens(offset, newLimit)
+
+        loadMoreButton.parentElement.removeChild(loadMoreButton)
+    } else {
+        loadPokemonItens(offset, limit)
+    }
+
+
 })
