@@ -32,5 +32,4 @@
     };
 
     console.log(x.nome);
-    console.log(x.['nome']);
 
